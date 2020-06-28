@@ -318,7 +318,7 @@ def test_all_file_formats(image, drawable):
         summary.append(test_result_to_str(format_moniker, single_result))
         all_result[format_moniker] = single_result
 
-    logger.info("testFileLoad summary of 'Test All' ")
+    logger.info("testExportImport summary of 'Test All' ")
     logger.info("Format      Save       Load      Notes")
     for line in summary: logger.info(line)
     # This is a GimpFu plugin so other GimpFu messages may precede or follow, and might be pertinent
@@ -326,7 +326,7 @@ def test_all_file_formats(image, drawable):
     # return boolean: did all individual tests match known good result?
     go_nogo_result = (all_result == KnownGoodAllTestResult.known_good_all_test_result)
     logger.info(f"If test result is unexpectedly False, insure test directory is empty before starting.")
-    logger.info(f"testFileLoad go/nogo: {go_nogo_result}")
+    logger.info(f"testExportImport go/nogo: {go_nogo_result}")
     return go_nogo_result
 
 

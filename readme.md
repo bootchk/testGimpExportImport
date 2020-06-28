@@ -8,13 +8,15 @@ Mainly of interest to Gimp developers and testers.
 Requires GimpFu.  Python3.  Tested on Gimp2.99.  Might work on Gimp.2.10
 
 Quickstart:
-    Install the plugin, say to your local plug-in directory in home/.config/...
-    Start Gimp
-    Choose Test>File save/load..
-    From the dialog select "Run all?"
-    Choose "OK"
-    Expect to see, printed in the console, any errors and a summary of the testing.
-    May take several minutes.
+
+- Install the plugin, say to your local plug-in directory in home/.config/...
+- Start Gimp
+- Open an image
+- Choose Test>File save/load..
+- From the dialog select "Run all?"
+- Choose "OK"
+- Expect to see, printed in the console, any errors and a summary of the testing.
+- May take several minutes.
 
 Plugin returns True if the set of test results matches an expected set of test results.
 
@@ -36,4 +38,4 @@ The plugin understands the current state of Gimp with respect to export/import:
 The expected set of test results knows the above, and also which tests are known to fail
 (for one Gimp version, currently 2.99, for the point-in-time the plugin was authored.)
 You can edit the plugin to change the expected test results.
-Thus you should expect the plugin repository new versions, as Gimp changes.
+Thus you should expect frequent changes and version of this plugin repository, as Gimp changes.
