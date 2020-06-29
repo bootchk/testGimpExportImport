@@ -42,6 +42,9 @@ class ImageFormat:
     Notes:
     file-gex-load is an extension loader, not an image loader
     Gimp uses "jpeg" but this plugin does not detect .jpg files.
+
+    Monikers use '_' and should be consistent in this file.  E.G. "html_table".
+    GimpFu will convert the PDB load procedure name to use '-'
     """
 
     """
@@ -84,13 +87,13 @@ class ImageFormat:
         "openraster" : "Known to crash in Python load/save procedure #5312",
         "colorxhtml" : "Known to crash in Python load/save procedure",
         "fli"        : "Known fail, #5315",
-        "pat"        : "Known fail, $5313",
+        "pat"        : "Known fail, #5313",
         #
         "gih"        : "Known crash, waiting on GimpParamStringArray implementation.",
         # These will likely never leave the list
         "csource"    : "Docs say saver won't run non-interactively",
         "raw"        : "Code says loader won't run non-interactively, returns 'calling error'",
-        "html-table" : "Code says saver won't run non-interactively, returns 'calling error'",
+        "html_table" : "Code says saver won't run non-interactively, returns 'calling error'",
         #
         "psp"        : "Can't locate a sample of this ancient format"
     }
