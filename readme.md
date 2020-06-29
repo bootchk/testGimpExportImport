@@ -30,7 +30,10 @@ and the latter must have permission: executable.
 
 You can amp up (add layers, etc.) the test image to test harder.
 Each test starts with the image open when you invoke the plugin.
-I usually use as the starting image a new image, all white.
+I usually use a File>New image as the starting image.
+
+You can also use this in other stress tests, it creates many images.
+For example, stress test memory or file space.
 
 Automates what you can otherwise do interactively using the Gimp GUI.
 It iterates over the image file formats of Gimp.

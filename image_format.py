@@ -150,8 +150,10 @@ class ImageFormat:
     # to mode indexed or less, here we downmode to the least: B&W
     downmode_to_BW_formats = ("gif", "fli", "xbm")
     downmode_to_gray_formats = ("")
-    # remove alpha i.e. flatten
-    downmode_to_sans_alpha_formats = ("dicom", "fits")
+    # remove alpha from layers i.e. flatten
+    # TODO remove alpha without merging layers???? Currently, flattens.
+    # I can't find a PDB procedure to remove alpha from layer.
+    downmode_to_sans_alpha_formats = ("dicom", "fits", "pbm", "pcx", "pfm", "pgm", "pnm", "ppm", "sunras", "xwd", )
     # xmc handles at most 256 pixels
     downmode_to_small_size_formats = ("xmc", )
 
