@@ -240,7 +240,7 @@ class ImageFormat:
 
         # convert seems to fail unless we flatten?
         pdb.gimp_image_flatten(new_image)
-        
+
         # TODO defaults not working
         pdb.gimp_image_convert_indexed(new_image, DITHER_NONE, PALETTE_MONO, 0, False, False, "foo")
         new_drawable = pdb.gimp_image_get_active_layer(new_image)
@@ -255,7 +255,7 @@ class ImageFormat:
         TODO xmc appears to save any image, but won't load its own dogfood.
         """
         if format_moniker in ImageFormat.downmode_to_BW_formats :
-            result = downmode_to_BW(image, drawable)
+            result = ImageFormat.downmode_to_BW(image, drawable)
         elif format_moniker in ImageFormat.downmode_to_gray_formats:
             logger.info("Down moding to mode gray")
             new_image = pdb.gimp_image_duplicate(image)
