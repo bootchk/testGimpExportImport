@@ -28,9 +28,14 @@ Install (in Gimp 3) means copy the top directory to the plug-ins folder.
 The top directory (testGimpExportImport) must have the same name as the main .py file (testGimpExportImport.py)
 and the latter must have permission: executable.
 
-You can amp up (add layers, etc.) the test image to test harder.
-Each test starts with the image open when you invoke the plugin.
 I usually use a File>New image as the starting image.
+You can amp up (open a real image, add layers, etc.) the test image to test harder.
+Each test starts with the image open when you invoke the plugin.
+Try adding:
+- selection
+- multiple layers
+- layer mask
+- layer groups
 
 You can also use this in other stress tests, it creates many images.
 For example, stress test memory or file space.

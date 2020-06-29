@@ -82,6 +82,8 @@ class ImageFormat:
 
     Recent deletions from the list:
     "cel"        : "Known crash", mysteriously now seems to work
+
+    Probably "header" should be in this list, it doesn't handle some drawable types for multi-layer images???
     """
     map_omission_to_reason = {
         "openraster" : "Known to crash in Python load/save procedure #5312",
@@ -228,6 +230,24 @@ class ImageFormat:
 
     TODO extract to ModeConverter class
     """
+
+    def downmode_to_BW(image, drawable):
+        """ Return a new B&W image and drawable. """
+        logger.info("Down moding to mode indexed B&W")
+        # format requires indexed.  Convert to lowest common denominator: one-bit B&W mono
+        # TODO convert only xbm to B&W, convert others to pallete
+        new_image = pdb.gimp_image_duplicate(image)
+
+        # convert seems to fail unless we flatten?
+        pdb.gimp_image_flatten(new_image)
+        
+        # TODO defaults not working
+        pdb.gimp_image_convert_indexed(new_image, DITHER_NONE, PALETTE_MONO, 0, False, False, "foo")
+        new_drawable = pdb.gimp_image_get_active_layer(new_image)
+        result = new_image, new_drawable
+        return result
+
+
     def compatible_mode_image(format_moniker, image, drawable):
         """ Return a down-moded image of mode that format requires.
 
@@ -235,14 +255,7 @@ class ImageFormat:
         TODO xmc appears to save any image, but won't load its own dogfood.
         """
         if format_moniker in ImageFormat.downmode_to_BW_formats :
-            logger.info("Down moding to mode indexed B&W")
-            # format requires indexed.  Convert to lowest common denominator: one-bit B&W mono
-            # TODO convert only xbm to B&W, convert others to pallete
-            new_image = pdb.gimp_image_duplicate(image)
-            # TODO defaults not working
-            pdb.gimp_image_convert_indexed(new_image, DITHER_NONE, PALETTE_MONO, 0, False, False, "foo")
-            new_drawable = pdb.gimp_image_get_active_layer(new_image)
-            result = new_image, new_drawable
+            result = downmode_to_BW(image, drawable)
         elif format_moniker in ImageFormat.downmode_to_gray_formats:
             logger.info("Down moding to mode gray")
             new_image = pdb.gimp_image_duplicate(image)
