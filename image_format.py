@@ -65,9 +65,10 @@ class ImageFormat:
     """
     Exclude formats from test all
     Where we know they fail and want to test everything else.
-    You can still test individually, just not using "test all"
     Especially when they crash the *test plugin*, not just return error from PDB call.
     Some may enter the debugger and wait on user interaction.
+
+    ****You can still test individually, just not using "test all"****
 
     Reasons are subject to change.
     They are snapshots in time for a given state of Gimp development.
@@ -75,15 +76,22 @@ class ImageFormat:
     When bugs in Gimp are fixed, remove these reasons.
     Any tester can alter this temporarily.
     Should permanently remove a line when issue is closed.
+
+    Recent deletions from the list:
+    "cel"        : "Known crash", mysteriously now seems to work
     """
     map_omission_to_reason = {
-        "cel"        : "Known crash",
-        "openraster" : "Known to crash in Python load/save procedure",
-        "gih"        : "Known crash, waiting on GimpParamStringArray implementation.",
+        "openraster" : "Known to crash in Python load/save procedure #5312",
         "colorxhtml" : "Known to crash in Python load/save procedure",
+        "fli"        : "Known fail, #5315",
+        "pat"        : "Known fail, $5313",
+        #
+        "gih"        : "Known crash, waiting on GimpParamStringArray implementation.",
+        # These will likely never leave the list
         "csource"    : "Docs say saver won't run non-interactively",
         "raw"        : "Code says loader won't run non-interactively, returns 'calling error'",
         "html-table" : "Code says saver won't run non-interactively, returns 'calling error'",
+        #
         "psp"        : "Can't locate a sample of this ancient format"
     }
 
