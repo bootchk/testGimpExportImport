@@ -28,25 +28,26 @@ Install (in Gimp 3) means copy the top directory to the plug-ins folder.
 The top directory (testGimpExportImport) must have the same name as the main .py file (testGimpExportImport.py)
 and the latter must have permission: executable.
 
-I usually use a File>New image as the starting image.
-You can amp up (open a real image, add layers, etc.) the test image to test harder.
-Each test starts with the image open when you invoke the plugin.
-Try adding:
-- selection
-- multiple layers
-- layer mask
-- layer groups
-
-You can also use this in other stress tests, it creates many images.
-For example, stress test memory or file space.
+Testing, and interpretation of results
+--------------------------------------
 
 Automates what you can otherwise do interactively using the Gimp GUI.
-It iterates over the image file formats of Gimp.
-For each file format it calls the save (export) and load (import) PDB procedures for the format.
+
+- Test all: iterates over the image file formats of Gimp, for each calls the save (export) and load (import) PDB procedures
+- Test a single format, save (unless file already exists) and load
 
 Simple sanity test only: for a format, success means no more than:
 ((save procedure creates a file and returns "success") and (load procedure reads the same file and returns "success"))
-Does not compare the in and out images.
+
+The plugin does not compare the in and out images.
+You can manually, visually look at the loaded images at the top of the Gimp window.
+Very roughly speaking, they should look:
+- like the starting image,
+- or down moded from the original,
+- or a sample image (when only loaders exist.)
+With some exceptions: .hgt will look gray until you map gradient
+(know issue with .hgt: choose a new gradient, choose color>map>gradient)
+(TODO or is it really an issue with negative numbers???)
 
 The plugin understands the current state of Gimp with respect to export/import:
 - the set of file formats and their file extensions
@@ -60,3 +61,18 @@ The expected set of test results knows the above, and also which tests are known
 (for one Gimp version, currently 2.99, for the point-in-time the plugin was authored.)
 You can edit the plugin to change the expected test results.
 Thus you should expect frequent changes and version of this plugin repository, as Gimp changes.
+
+Advanced Testing
+----------------
+
+I usually use a File>New image as the starting image.
+You can amp up (open a real image, add layers, etc.) the test image to test harder.
+Each test starts with the image open when you invoke the plugin.
+Try adding:
+- selection
+- multiple layers
+- layer mask
+- layer groups
+
+You can also use this in other stress tests, since it creates many images.
+For example, stress test memory or file space.
