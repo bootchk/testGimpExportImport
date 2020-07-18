@@ -97,9 +97,15 @@ class ImageFormat:
         "csource"    : "Docs say saver won't run non-interactively",
         "raw"        : "Code says loader won't run non-interactively, returns 'calling error'",
         "html_table" : "Code says saver won't run non-interactively, returns 'calling error'",
-        #
-        "psp"        : "Can't locate a sample of this ancient format"
     }
+    '''
+    History of omitted tests:
+
+    July 2020, found a sample of .psp
+    "psp"        : "Can't locate a sample of this ancient format"
+    '''
+
+
 
     # procedures not named canonically file-<foo>-[load,save]
     # Python names, with underbar
