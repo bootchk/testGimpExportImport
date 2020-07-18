@@ -305,8 +305,6 @@ def test_file_format(image, drawable, format_moniker):
 def test_all_file_formats(image, drawable):
     summary = []
 
-    TestDir.populate_sample_files()
-
     all_result = AllTestResult()
 
     for format_moniker in ImageFormat.all_format_monikers:
@@ -338,6 +336,8 @@ def plugin_func(image, drawable, run_all, file_format_index):
     """
     global logger
     logger = get_logger()
+
+    TestDir.populate_sample_files()
 
     if run_all:
         result = test_all_file_formats(image, drawable)
