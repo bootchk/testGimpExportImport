@@ -7,8 +7,14 @@ A Python plugin for Gimp that tests export/import features of Gimp.
 Mainly of interest to Gimp developers and testers.
 
 Works on Gimp2.99.  Requires GimpFu-v3 (from my other repository.)    
-
 Does NOT work on Gimp.2.10 (its Python 3)
+
+Contains a folder (../in) of examples (test cases) of image formats that Gimp only knows how to import.
+
+The repository is likely to be volatile since Gimp is actively changing (for v3.)
+The plugin contains knowledge about what Gimp supports (requirements)
+and as the requirements change, the plugin needs update.
+The plugin is not supported by gimp.org.  
 
 Quickstart:
 -----------

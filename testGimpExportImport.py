@@ -111,6 +111,23 @@ def get_logger():
     return logger
 
 
+def generate_saver_arg_string(format_moniker):
+    """ Generate an arg string specific to format.
+
+    Obsolete.
+    Since 2.99.2, each format requires (num_drawable, drawable) even if
+    the format cannot save multiple layers.
+    """
+    if ImageFormat.saver_takes_single_drawable(format_moniker):
+        arg_string = "(image, drawable, filename)"
+    else:
+        # has signature image, drawable_count, GObjectArray, filename
+        # GimpFu will convert single drawable instance to GObjectArray
+        arg_string = "(image, 1, drawable, filename)"
+    return arg_string
+
+
+
 
 def call_save_procedure(saver_name, image, drawable, format_moniker, filename):
     """ Invoke save procedure given by saver_name.
@@ -120,15 +137,18 @@ def call_save_procedure(saver_name, image, drawable, format_moniker, filename):
     """
     image, drawable = ImageFormat.compatible_mode_image(format_moniker, image, drawable)
 
-    if ImageFormat.saver_takes_single_drawable(format_moniker):
-        arg_string = "(image, drawable, filename)"
-    else:
-        # has signature image, drawable_count, GObjectArray, filename
-        # GimpFu will convert single drawable instance to GObjectArray
-        arg_string = "(image, 1, drawable, filename)"
+    # OLD arg_string = generate_saver_arg_string(format_moniker)
+
+    """
+    Since 2.99.2, multi-layer requires list
+    We rely on GimpFu to convert an element to a list.
+    TODO for those formats that support multiple layers, pass more than one layer
+    """
+    drawables = drawable
+    arg_string = "(image, 1, drawables, filename)"
 
     eval_string = "pdb." + saver_name + arg_string
-    #logger.info(f"Invoking: {eval_string}")
+    logger.info(f"Invoking: {eval_string}")
     eval(eval_string)
 
 
@@ -336,6 +356,9 @@ def plugin_func(image, drawable, run_all, file_format_index):
     """
     global logger
     logger = get_logger()
+
+    # drawable is NOT multiple layers
+    assert not isinstance(drawable, list)
 
     TestDir.populate_sample_files()
 
