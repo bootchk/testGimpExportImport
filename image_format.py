@@ -87,8 +87,6 @@ class ImageFormat:
     Probably "header" should be in this list, it doesn't handle some drawable types for multi-layer images???
     """
     map_omission_to_reason = {
-        "openraster" : "Known to crash in Python load/save procedure #5312",
-        "colorxhtml" : "Known to crash in Python load/save procedure",
         "fli"        : "Known fail, #5315",
         "pat"        : "Known fail, #5313",
         #
@@ -103,6 +101,10 @@ class ImageFormat:
 
     July 2020, found a sample of .psp
     "psp"        : "Can't locate a sample of this ancient format"
+
+    Nov 2020, #5313 temporarily resolved by
+    "openraster" : "Known to crash in Python load/save procedure #5312",
+    "colorxhtml" : "Known to crash in Python load/save procedure",
     '''
 
 
