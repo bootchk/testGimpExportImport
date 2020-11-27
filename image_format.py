@@ -58,7 +58,8 @@ class ImageFormat:
     "sunras"     : "ras",
     "openraster" : "ora",    # or .sun, etc.
     "rgbe"       : "hdr",
-    "colorxhtml" : "xhtml",
+    "colorxhtml" : "xhtml",  # old name
+    "asciiart"   : "html",   # new name
     "csource"    : "c",    # C source
     "header"     : "h",     # C header source
     "html-table" : "html",
@@ -134,7 +135,8 @@ class ImageFormat:
                         "tga", "tiff", "xbm",
                         "xcf", "xmc", "xwd", "xz")
     # Gimp can save but not load
-    no_loader_formats = ("colorxhtml", "csource", "exr", "header", "html_table",
+    no_loader_formats = ("colorxhtml", "asciiart",  # old and new names
+                         "csource", "exr", "header", "html_table",
                         "pbm", "pfm", "pgm", "ppm", )
 
     # !!! Note procedure is named file-html-table_save, but we transliterate - to _ since this is Python GimpFu
