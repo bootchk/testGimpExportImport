@@ -58,8 +58,7 @@ class ImageFormat:
     "sunras"     : "ras",
     "openraster" : "ora",    # or .sun, etc.
     "rgbe"       : "hdr",
-    "colorxhtml" : "xhtml",  # old name
-    "asciiart"   : "html",   # new name
+    "asciiart"   : "html",   # new name for colorxhtml
     "csource"    : "c",    # C source
     "header"     : "h",     # C header source
     "html-table" : "html",
@@ -135,7 +134,7 @@ class ImageFormat:
                         "tga", "tiff", "xbm",
                         "xcf", "xmc", "xwd", "xz")
     # Gimp can save but not load
-    no_loader_formats = ("colorxhtml", "asciiart",  # old and new names
+    no_loader_formats = ("asciiart",
                          "csource", "exr", "header", "html_table",
                         "pbm", "pfm", "pgm", "ppm", )
 
