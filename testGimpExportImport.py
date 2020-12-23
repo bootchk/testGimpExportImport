@@ -87,6 +87,16 @@ from image_format import ImageFormat
 from all_test_result import AllTestResult, KnownGoodAllTestResult
 from test_dir import TestDir
 
+
+
+# TODO temp flag for special tests
+# Test new feature of plugin API: multiple layers instead of single layer
+do_test_multilayer = True
+
+
+
+
+
 def get_logger():
     logger = logging.getLogger('TestExportImport')
 
@@ -137,15 +147,21 @@ def call_save_procedure(saver_name, image, drawable, format_moniker, filename):
     """
     image, drawable = ImageFormat.compatible_mode_image(format_moniker, image, drawable)
 
-    # OLD arg_string = generate_saver_arg_string(format_moniker)
-
     """
     Since 2.99.2, multi-layer requires list
     We rely on GimpFu to convert an element to a list.
-    TODO for those formats that support multiple layers, pass more than one layer
     """
     drawables = drawable
     arg_string = "(image, 1, drawables, filename)"
+
+    """
+    Test multiple layers, pass more than one layer.
+    Many don't support it, and will fail.
+    """
+    if do_test_multilayer:
+        drawable_copy = drawable.copy()
+        drawables = [drawable, drawable_copy]
+        arg_string = "(image, 2, drawables, filename)"
 
     eval_string = "pdb." + saver_name + arg_string
     logger.info(f"Invoking: {eval_string}")
